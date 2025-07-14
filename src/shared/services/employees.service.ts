@@ -1,16 +1,19 @@
 import type {Employee} from "../models/employee.model.ts";
+import axios from "axios";
 
-export async function getAll(): Promise<Employee[]> {
+export async function getAll({pageParam = 1, searchTerm = ''}): Promise<Employee[]> {
+    const LIMIT = 10;
     try {
-        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/employees`, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+
+        let url = `${import.meta.env.VITE_API_BASE_URL}/employees?_page=${pageParam}&_limit=${LIMIT}`;
+
+        if (searchTerm) {
+            url += `&name=${encodeURIComponent(searchTerm)}`;
         }
-        return await response.json();
+
+        const response = await axios.get(url);
+
+        return await response.data;
     } catch (error) {
         console.error('Error fetching employees:', error);
         return [];
