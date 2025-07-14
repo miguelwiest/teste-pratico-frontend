@@ -2,11 +2,13 @@ import * as G from '../../shared/styles/global.ts';
 import {Input} from "../../shared/components/input";
 import {type Column, Table} from "../../shared/components/table";
 import {ProfileImage} from "../../shared/components/table/style.ts";
-import {useQuery} from "@tanstack/react-query";
+import {useInfiniteQuery} from "@tanstack/react-query";
 import type {Employee} from "../../shared/models/employee.model.ts";
 import {getAll} from "../../shared/services/employees.service.ts";
 import {formatDate, formatPhoneNumber} from "../../shared/utils";
 import {useMediaQuery} from "../../shared/hooks/useMediaQuery.ts";
+import {useState} from "react";
+import {useDebounce} from "../../shared/hooks/useDebounce.ts";
 
 const employeeColumns: Column<Employee>[] = [
     {
@@ -42,16 +44,28 @@ const employeeColumns: Column<Employee>[] = [
 
 const HomePage = () => {
     const isMobile = useMediaQuery("(max-width: 768px)");
+    const [searchTerm, setSearchTerm] = useState('');
 
-    const {data} = useQuery({
-        queryKey: ['employees'],
-        queryFn: getAll
+    const debouncedSearchTerm = useDebounce(searchTerm, 500);
+
+    const {
+        data,
+        fetchNextPage,
+        hasNextPage,
+        isFetchingNextPage
+    } = useInfiniteQuery({
+        queryKey: ['employees', debouncedSearchTerm],
+        queryFn: ({pageParam}) => getAll({pageParam, searchTerm: debouncedSearchTerm}),
+        initialPageParam: 1,
+        getNextPageParam: (lastPage, allPages) => {
+            return lastPage.length === 10 ? allPages.length + 1 : undefined;
+        },
     });
 
+    const employees = data?.pages.flatMap(page => page) ?? [];
+
     return (
-        <G.Container
-            padding="42px 30px"
-        >
+        <G.Container padding="42px 30px">
             <section style={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -64,11 +78,19 @@ const HomePage = () => {
                 <Input
                     icon
                     placeholder={`Pesquisar`}
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                     width={isMobile ? '100%' : 287}
                 />
             </section>
             <section>
-                <Table columns={employeeColumns} data={data}/>
+                <Table
+                    columns={employeeColumns}
+                    data={employees}
+                    fetchNextPage={fetchNextPage}
+                    hasNextPage={hasNextPage}
+                    isFetchingNextPage={isFetchingNextPage}
+                />
             </section>
         </G.Container>
     );
