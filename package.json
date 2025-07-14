@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "jest",
-    "server": "json-server --watch db.json --port 3000 --host"
+    "server": "json-server --watch db.json --port 3000"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.83.0",
