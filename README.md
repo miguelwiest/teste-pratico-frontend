@@ -77,7 +77,7 @@ Siga os passos abaixo para configurar e rodar o projeto localmente.
 
 1.  Clone o repositório:
     ```bash
-    git clone [https://github.com/miguelwiest/teste-pratico-frontend.git](https://github.com/miguelwiest/teste-pratico-frontend.git)
+    git clone https://github.com/miguelwiest/teste-pratico-frontend.git
     ```
 2.  Navegue até o diretório do projeto:
     ```bash
