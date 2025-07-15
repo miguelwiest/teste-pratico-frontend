@@ -82,7 +82,7 @@ const HomePage = () => {
     const employees = data?.pages.flatMap(page => page) ?? [];
 
     return (
-        <G.Container padding="42px 30px">
+        <G.Container $padding="42px 30px">
             <section style={{
                 display: 'flex',
                 justifyContent: 'space-between',

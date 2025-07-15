@@ -22,11 +22,11 @@ export const Input: React.FC<InputProps> = ({placeholder, icon, iconPosition = '
             maxWidth={props.maxWidth}
         >
             <S.InputContainer>
-                {icon && <S.IconWrapper iconPosition={iconPosition}>
+                {icon && <S.IconWrapper $iconPosition={iconPosition}>
                     <img src={searchIcon} alt="search_icon"/>
                 </S.IconWrapper>
                 }
-                <S.StyledInput placeholder={placeholder} hasIcon={!!icon} iconPosition={iconPosition} {...props} />
+                <S.StyledInput placeholder={placeholder} $hasIcon={!!icon} $iconPosition={iconPosition} {...props} />
             </S.InputContainer>
         </S.ComponentWrapper>
     );

@@ -18,22 +18,22 @@ export const InputContainer = styled.div`
     width: 100%;
 `;
 
-export const IconWrapper = styled.span<{ iconPosition?: 'left' | 'right' }>`
+export const IconWrapper = styled.span<{ $iconPosition?: 'left' | 'right' }>`
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    left: ${({iconPosition}) => (iconPosition === 'left' ? '16px' : 'auto')};
-    right: ${({iconPosition}) => (iconPosition === 'right' ? '16px' : 'auto')};
+    left: ${({$iconPosition}) => ($iconPosition === 'left' ? '16px' : 'auto')};
+    right: ${({$iconPosition}) => ($iconPosition === 'right' ? '16px' : 'auto')};
     display: flex;
     align-items: center;
     color: #888;
     pointer-events: none;
 `;
 
-export const StyledInput = styled.input<{ hasIcon: boolean; iconPosition?: 'left' | 'right' }>`
+export const StyledInput = styled.input<{ $hasIcon: boolean; $iconPosition?: 'left' | 'right' }>`
     padding: 16px 20px;
-    padding-left: ${({hasIcon, iconPosition}) => hasIcon && iconPosition === 'left' ? '48px' : '16px'};
-    padding-right: ${({hasIcon, iconPosition}) => hasIcon && iconPosition === 'right' ? '48px' : '16px'};
+    padding-left: ${({$hasIcon, $iconPosition}) => $hasIcon && $iconPosition === 'left' ? '48px' : '16px'};
+    padding-right: ${({$hasIcon, $iconPosition}) => $hasIcon && $iconPosition === 'right' ? '48px' : '16px'};
 
     border: 1px solid #ccc;
     border-radius: 8px;

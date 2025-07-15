@@ -1,22 +1,22 @@
 import styled from "styled-components";
 
-export const ExpandIcon = styled.img<{ isExpanded: boolean }>`
+export const ExpandIcon = styled.img<{ $isExpanded: boolean }>`
     transition: transform 0.3s ease;
-    transform: ${({isExpanded}) => (isExpanded ? 'rotate(180deg)' : 'rotate(0deg)')};
+    transform: ${({$isExpanded}) => ($isExpanded ? 'rotate(180deg)' : 'rotate(0deg)')};
 `;
 
 export const TableContainer = styled.div`
     width: 100%;
-    box-shadow: ${props => props.theme.shadows.secondary};
+    box-shadow: ${({theme}) => theme.shadows.secondary};
 
-    
+
 `;
 
 export const THead = styled.div`
     display: grid;
     grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr 1.5fr;
     padding: 0 16px;
-    background-color: ${props => props.theme.colors.blue.primary};
+    background-color: ${({theme}) => theme.colors.blue.primary};
     border-radius: 8px 8px 0 0;
 
     @media (max-width: 768px) {
@@ -29,7 +29,7 @@ export const Th = styled.div`
     text-align: left;
     font-size: 16px;
     font-weight: 500;
-    color: ${props => props.theme.colors.white};
+    color: ${({theme}) => theme.colors.white};
 `;
 
 export const TBody = styled.div`
@@ -37,18 +37,18 @@ export const TBody = styled.div`
     flex-direction: column;
 `;
 
-export const Row = styled.div<{ isExpanded: boolean }>`
+export const Row = styled.div<{ $isExpanded: boolean }>`
     &:last-child {
         border-bottom: none;
     }
 
-    background-color: ${props => props.theme.colors.white};
-    border-bottom: 1px solid ${props => props.theme.colors.gray[10]};
+    background-color: ${({theme}) => theme.colors.white};
+    border-bottom: 1px solid ${({theme}) => theme.colors.gray[10]};
 
     @media (min-width: 769px) {
         display: grid;
         grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr 1.5fr;
-        border-bottom: 1px solid ${props => props.theme.colors.gray[10]};
+        border-bottom: 1px solid ${({theme}) => theme.colors.gray[10]};
         border-radius: 0;
         box-shadow: none;
 
@@ -64,11 +64,11 @@ export const RowHeader = styled.div`
     cursor: pointer;
 `;
 
-export const RowDetails = styled.div<{ isExpanded: boolean }>`
-    max-height: ${({isExpanded}) => (isExpanded ? '500px' : '0')};
+export const RowDetails = styled.div<{ $isExpanded: boolean }>`
+    max-height: ${({$isExpanded}) => ($isExpanded ? '500px' : '0')};
     overflow: hidden;
     transition: max-height 0.4s ease, padding 0.4s ease;
-    padding: ${({isExpanded}) => (isExpanded ? '0 16px 16px' : '0 16px')};
+    padding: ${({$isExpanded}) => ($isExpanded ? '0 16px 16px' : '0 16px')};
     display: flex;
     flex-direction: column;
     gap: 12px;

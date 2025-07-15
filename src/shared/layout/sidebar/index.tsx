@@ -12,8 +12,8 @@ export const Sidebar: React.FC = () => {
     return (
         <main style={{height: '100%'}}>
             <G.Card
-                padding="16px 24px"
-                borderRadius="0"
+                $padding="16px 24px"
+                $borderRadius="0"
             >
                 <img src={logo} alt="logo__icon" height={34} width={91}/>
             </G.Card>

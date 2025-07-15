@@ -52,28 +52,33 @@ export const Table = <T extends { id: number | string }>(
             loader={<div style={{textAlign: 'center', padding: '20px'}}>Carregando mais...</div>}
         >
             <S.TableContainer>
-                <S.THead style={{display: isMobile ? 'none' : 'grid'}}>
-                    {columns.map((col) => <S.Th key={String(col.key)}>{col.header}</S.Th>)}
-                </S.THead>
-                <S.THead style={{display: !isMobile ? 'none' : 'flex'}}>
-                    <S.Th>{columns[0].header}</S.Th>
-                    <S.Th>{columns[1].header}</S.Th>
-                </S.THead>
+                {
+                    !isMobile ? (
+                        <S.THead>
+                            {columns.map((col) => <S.Th key={String(col.key)}>{col.header}</S.Th>)}
+                        </S.THead>
+                    ) : (
+                        <S.THead>
+                            <S.Th>{columns[0].header}</S.Th>
+                            <S.Th>{columns[1].header}</S.Th>
+                        </S.THead>
+                    )
+                }
 
                 <S.TBody>
                     {data?.map((item) => {
                         const isExpanded = expandedRowId === item.id;
                         return (
-                            <S.Row key={item.id} isExpanded={isExpanded}>
+                            <S.Row key={item.id} $isExpanded={isExpanded}>
                                 <div className="mobile-only">
                                     <S.RowHeader onClick={() => handleRowClick(item.id)}>
                                         <div style={{display: 'flex', alignItems: 'center', gap: '16px'}}>
                                             {columns[0].render ? columns[0].render(item) : String(item[columns[0].key])}
                                             {columns[1].render ? columns[1].render(item) : String(item[columns[1].key])}
                                         </div>
-                                        <S.ExpandIcon width={24} src={arrowIcon} isExpanded={isExpanded}/>
+                                        <S.ExpandIcon width={24} src={arrowIcon} $isExpanded={isExpanded}/>
                                     </S.RowHeader>
-                                    <S.RowDetails isExpanded={isExpanded}>
+                                    <S.RowDetails $isExpanded={isExpanded}>
                                         {detailColumns.map(col => (
                                             <S.Cell key={String(col.key)} data-label={col.header}>
                                                 {col.render ? col.render(item) : String(item[col.key])}
