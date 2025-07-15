@@ -50,7 +50,7 @@ const employeeColumns: Column<Employee>[] = [
     {
         key: 'admission_date',
         header: 'Data de Admissão',
-        render: (employee) => formatDate(new Date(employee.admission_date)),
+        render: (employee) => formatDate(employee.admission_date),
     },
     {
         key: 'phone',
