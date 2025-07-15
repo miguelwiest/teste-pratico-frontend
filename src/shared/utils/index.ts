@@ -32,3 +32,24 @@ export const formatPhoneNumber = (phoneNumber: string): string => {
 
     return phoneNumber;
 };
+
+export function processSearchTerm(term: string): string {
+    const trimmedTerm = term.trim();
+
+    const dateMatch = trimmedTerm.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    if (dateMatch) {
+        const day = dateMatch[1];
+        const month = dateMatch[2];
+        const year = dateMatch[3];
+        return `${year}-${month}-${day}`;
+    }
+
+    const digits = (trimmedTerm.match(/\d/g) || []).length;
+    const letters = (trimmedTerm.match(/[a-zA-Z]/g) || []).length;
+
+    if (digits > 0 && letters <= 2) {
+        return trimmedTerm.replace(/\D/g, '');
+    }
+
+    return trimmedTerm;
+}
