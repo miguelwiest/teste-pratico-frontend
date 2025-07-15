@@ -50,7 +50,7 @@ describe('getAll', () => {
 
         await getAll({pageParam: 1, searchTerm: 'Jane'});
 
-        expect(axios.get).toHaveBeenCalledWith(`${import.meta.env.VITE_API_BASE_URL}/employees?_page=1&_limit=10&name=Jane`);
+        expect(axios.get).toHaveBeenCalledWith(`${import.meta.env.VITE_API_BASE_URL}/employees?_page=1&_limit=10&q=Jane`);
     });
 
     it('encodes special characters in the search term', async () => {
@@ -59,6 +59,6 @@ describe('getAll', () => {
 
         await getAll({pageParam: 1, searchTerm: 'John Doe & Co'});
 
-        expect(axios.get).toHaveBeenCalledWith(`${import.meta.env.VITE_API_BASE_URL}/employees?_page=1&_limit=10&name=John%20Doe%20%26%20Co`);
+        expect(axios.get).toHaveBeenCalledWith(`${import.meta.env.VITE_API_BASE_URL}/employees?_page=1&_limit=10&q=John%20Doe%20%26%20Co`);
     });
 });
