@@ -103,7 +103,7 @@ Siga os passos abaixo para configurar e rodar o projeto localmente.
     ```bash
     yarn server
     ```
-    
+
     A API estará disponível em `http://localhost:3000`.
 
 2.  **Inicie a aplicação React:**
@@ -125,6 +125,34 @@ Siga os passos abaixo para configurar e rodar o projeto localmente.
 -   `npm run build`: Compila a aplicação para produção.
 -   `npm run lint`: Executa o ESLint para analisar o código.
 -   `npm run server`: Inicia o `json-server` para a API mock.
+-   `npm test`: Roda a suíte de testes automatizados com o Jest.
+
+---
+
+## 🧪 Testes
+
+Este projeto utiliza **Jest** e **React Testing Library** para garantir a qualidade e o comportamento esperado da aplicação.
+
+### Como Executar os Testes
+
+Para rodar todos os testes automatizados, execute o seguinte comando:
+
+```bash
+npm test
+```
+
+ou, se estiver usando o Yarn:
+
+```bash
+yarn test
+```
+
+### Estratégia de Testes
+
+A abordagem de testes segue a filosofia do **Domain-Driven Design (DDD)**, focando em testar os comportamentos e as regras de negócio da aplicação:
+
+-   **Testes de Unidade:** Focados em funções puras e hooks customizados (`utils`, `hooks`). Eles garantem que a lógica de negócio isolada (como formatação de dados) funcione corretamente.
+-   **Testes de Integração:** Focados em componentes e páginas (`HomePage`, `Table`, `Input`). Eles verificam se os componentes renderizam corretamente e se a interação do utilizador (como cliques e digitação) produz o resultado esperado na UI.
 
 ---
 
