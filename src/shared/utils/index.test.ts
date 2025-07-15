@@ -1,13 +1,13 @@
-import { formatDate, formatPhoneNumber } from './index';
+import {formatDate, formatPhoneNumber, processSearchTerm} from './index';
 
 describe('formatDate', () => {
     it('formats a valid date correctly', () => {
-        const date = new Date(2023, 9, 5); // October 5, 2023
+        const date = '2023-10-05T00:00:00Z'
         expect(formatDate(date)).toBe('05/10/2023');
     });
 
     it('handles invalid date input gracefully', () => {
-        expect(() => formatDate(new Date('invalid'))).toThrow();
+        expect(() => formatDate('invalid')).toThrow();
     });
 });
 
@@ -47,3 +47,30 @@ describe('formatPhoneNumber', () => {
         expect(formatPhoneNumber(phoneNumber)).toBe('abc123');
     });
 });
+
+describe('processSearchTerm', () => {
+    it('processes a date in DD/MM/YYYY format to YYYY-MM-DD', () => {
+        const term = '05/10/2023';
+        expect(processSearchTerm(term)).toBe('2023-10-05');
+    });
+
+    it('returns a numeric search term as is', () => {
+        const term = '12345';
+        expect(processSearchTerm(term)).toBe('12345');
+    });
+
+    it('returns an alphanumeric search term as is', () => {
+        const term = 'John Doe';
+        expect(processSearchTerm(term)).toBe('John Doe');
+    });
+
+    it('trims whitespace from the search term', () => {
+        const term = '   John Doe   ';
+        expect(processSearchTerm(term)).toBe('John Doe');
+    });
+
+    it('handles empty search terms gracefully', () => {
+        const term = '';
+        expect(processSearchTerm(term)).toBe('');
+    });
+})
