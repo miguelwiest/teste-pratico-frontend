@@ -1,6 +1,11 @@
+// React
 import React from 'react';
-import searchIcon from '../../../assets/icons/search.svg';
+
+// Local Styles
 import * as S from './style.ts';
+
+// Icons
+import searchIcon from '../../../assets/icons/search.svg';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     placeholder?: string;

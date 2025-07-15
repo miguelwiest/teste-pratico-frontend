@@ -1,3 +1,4 @@
+// React
 import React, {useEffect, memo, type CSSProperties} from 'react';
 
 interface InfiniteScrollProps {

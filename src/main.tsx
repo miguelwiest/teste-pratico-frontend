@@ -1,12 +1,17 @@
+// React
 import ReactDOM from "react-dom/client";
 import {
     RouterProvider,
 } from "react-router";
 
+// Providers
 import {ThemeProvider} from "styled-components";
 import {QueryClientProvider, QueryClient} from '@tanstack/react-query'
 
+// Routes
 import {router} from "./routes/router.tsx";
+
+// Shared Styles
 import {defaultTheme} from "./shared/styles/theme.ts";
 import {GlobalStyle} from "./shared/styles/global.ts";
 
@@ -25,8 +30,8 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(root).render(
     <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={defaultTheme}>
-            <GlobalStyle />
-            <RouterProvider router={router} />
+            <GlobalStyle/>
+            <RouterProvider router={router}/>
         </ThemeProvider>
     </QueryClientProvider>
 );

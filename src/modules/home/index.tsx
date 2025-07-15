@@ -1,14 +1,31 @@
-import * as G from '../../shared/styles/global.ts';
+// React
+import {useState} from "react";
+
+// Library Methods
+import {useInfiniteQuery} from "@tanstack/react-query";
+
+// Global Components
 import {Input} from "../../shared/components/input";
 import {type Column, Table} from "../../shared/components/table";
-import {ProfileImage} from "../../shared/components/table/style.ts";
-import {useInfiniteQuery} from "@tanstack/react-query";
-import type {Employee} from "../../shared/models/employee.model.ts";
+
+// Services
 import {getAll} from "../../shared/services/employees.service.ts";
-import {formatDate, formatPhoneNumber} from "../../shared/utils";
+
+// Hooks
 import {useMediaQuery} from "../../shared/hooks/useMediaQuery.ts";
-import {useState} from "react";
 import {useDebounce} from "../../shared/hooks/useDebounce.ts";
+
+// Utils
+import {formatDate, formatPhoneNumber} from "../../shared/utils";
+
+// Models
+import type {Employee} from "../../shared/models/employee.model.ts";
+
+// Global Styles
+import * as G from '../../shared/styles/global.ts';
+
+// Icons
+import {ProfileImage} from "../../shared/components/table/style.ts";
 
 const employeeColumns: Column<Employee>[] = [
     {

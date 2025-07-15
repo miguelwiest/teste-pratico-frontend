@@ -1,8 +1,16 @@
 import React, {useState} from 'react';
-import arrowIcon from '../../../assets/icons/arrow.svg'; // Adjust the path as necessary
-import * as S from './style.ts'
+
+// Hooks
 import {useMediaQuery} from "../../hooks/useMediaQuery.ts";
+
+// Global Components
 import InfiniteScroll from "../infinite-scroll";
+
+// Local Styles
+import * as S from './style.ts'
+
+// Icons
+import arrowIcon from '../../../assets/icons/arrow.svg';
 
 export interface Column<T> {
     key: keyof T;
@@ -26,8 +34,9 @@ export const Table = <T extends { id: number | string }>(
         hasNextPage,
         isFetchingNextPage
     }: TableProps<T>) => {
-    const [expandedRowId, setExpandedRowId] = useState<number | string | null>(null);
     const isMobile = useMediaQuery("(max-width: 768px)");
+
+    const [expandedRowId, setExpandedRowId] = useState<number | string | null>(null);
 
     const handleRowClick = (id: number | string) => {
         setExpandedRowId(currentId => (currentId === id ? null : id));

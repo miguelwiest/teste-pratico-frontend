@@ -1,7 +1,12 @@
+// React
 import React from 'react';
-import logo from '../../../assets/Logo.svg';
-import * as G from '../../styles/global.ts'
 import {Outlet} from "react-router";
+
+// Global Styles
+import * as G from '../../styles/global.ts'
+
+// Icons
+import logo from '../../../assets/Logo.svg';
 
 export const Sidebar: React.FC = () => {
     return (
